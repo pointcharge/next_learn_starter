@@ -1,13 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
+import utilStyles from "../styles/utils.module.css";
 
-export default function ProfilePic() {
+export default function ProfilePic({image}) {
   return (
     <Image
-      src="/images/profile.jpg"
+      src={image}
       height={144}
       width={144}
-      alt="modern architecture"
+      alt="A profile picture of some guy"
+      className={utilStyles.borderCircle}
     ></Image>
   )
 }

@@ -5,6 +5,7 @@ import utilStyles from "../styles/utils.module.css";
 // Only during compilation on Node
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
+import RenderingStrageties from "../components/RenderingStrageties";
 
 export async function getStaticProps() {
   // NOTE: This is running in NODE not on the client
@@ -61,13 +62,15 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
 
+      <RenderingStrageties></RenderingStrageties>
+
       <section>
         <h2>Older Pages</h2>
         <div>
           <Link href="/posts">Posts</Link>
         </div>
         <div>
-          <Link href="/first-post">First Post</Link>
+          <Link href="posts/first-post">First Post</Link>
         </div>
       </section>
     </Layout>
