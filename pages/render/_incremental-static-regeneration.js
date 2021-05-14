@@ -20,7 +20,9 @@ export async function getStaticProps() {
   };
 }
 
-export default function ServerSideGenerated({ randomUser }) {
+// NOTE: This is not working as intended. I'll have to read up more on
+// how icr works
+export default function IncrementalStaticRegeneration({ randomUser }) {
   return (
     <Layout>
       <div>
