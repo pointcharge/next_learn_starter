@@ -3,6 +3,8 @@ import Layout from "../../components/Layout";
 import ProfilePic from "../../components/ProfilePic";
 import RenderingStrageties from "../../components/RenderingStrageties";
 
+const regenTime = 10;
+
 export async function getStaticProps() {
   const res = await fetch("https://randomuser.me/api");
   const randomUser = await res.json();
@@ -12,8 +14,8 @@ export async function getStaticProps() {
       randomUser,
       // Next.js will attempt to re-generate the page:
       // - When a request comes in
-      // - At most once every 60 seconds
-      revalidate: 60,
+      // - At most once every regenTime seconds
+      revalidate: regenTime,
     },
   };
 }
@@ -43,10 +45,10 @@ export default function ServerSideGenerated({ randomUser }) {
       </div>
       <br />
       <div>
-        Everybody who visits this site within 60 seconds will see the same name
-        and image of the person when we fetched the data at build time. When a
-        new request comes in after 60 seconds, Next.js will regenarate the HTML
-        in the background.
+        Everybody who visits this site within {regenTime} seconds will see the
+        same name and image of the person when we fetched the data at build
+        time. When a new request comes in after {regenTime} seconds, Next.js
+        will regenarate the HTML in the background.
       </div>
 
       <section>

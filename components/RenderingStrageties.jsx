@@ -20,7 +20,12 @@ export default function RenderingStrageties() {
           <Link href="/render/client-side-rendering">
             Client Side Rendering
           </Link>
-          </div>
+        </div>
+        <div>
+          <Link href="/render/incremental-static-regeneration">
+            Incremental Static Regeneration
+          </Link>
+        </div>
     </div>
   )
 }
