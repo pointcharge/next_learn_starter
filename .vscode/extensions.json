@@ -1,5 +1,11 @@
 {
-    "recommendations": [
-        "dsznajder.es7-react-js-snippets"
-    ]
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "steoates.autoimport",
+    "esbenp.prettier-vscode",
+    "vscode-icons-team.vscode-icons",
+    "ecmel.vscode-html-css",
+    "clinyong.vscode-css-modules",
+    "mutantdino.resourcemonitor"
+  ]
 }
