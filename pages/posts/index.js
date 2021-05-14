@@ -1,11 +1,14 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
+import Layout from "../../components/Layout";
 
 export default function index() {
   return (
-    <div>
-      <Link href="/posts/first-post">First Post</Link>
-    </div>
-  )
+    <Layout>
+      {" "}
+      <div>
+        <Link href="/posts/first-post">First Post</Link>
+      </div>
+    </Layout>
+  );
 }
-
