@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 const name = 'Next.js Demo Website'
 export const siteTitle = 'Next.js Sample Website'
+const sourceCode = "https://github.com/pointcharge/next_learn_starter"
 
 export default function Layout({ children, home }) {
   return (
@@ -69,7 +70,8 @@ export default function Layout({ children, home }) {
         </div>
       )}
 
-
+      <br /><br />
+      <a href={sourceCode}>Source Code</a>
       {/* <CloudflareAnalytics token="8c447bd674ef4bb18d4a2966442bc661"></CloudflareAnalytics> */}
     </div>
   )
