@@ -27,7 +27,15 @@ export default function ClientSideRendering() {
       <br />
       <div>
         Everybody who visits this site will see a different user. Refreshing the
-        page will make the server call the API again and send an updated page.
+        page will make you call the API again and send an updated page.
+      </div>
+      <br />
+      <div>
+        Client side generation should be used on websites where the data is
+        specific to a certain user. Their data changes constantly and needs to
+        be up-to-date with every request. This method of rendering is bad for
+        SEO, since Google has to use their JS bots to see what is on the
+        website.
       </div>
       <br />
       <div>
@@ -50,9 +58,11 @@ export default function ClientSideRendering() {
   if (!data)
     return (
       <Layout>
-        {text}
-        <br />
         <div>loading...</div>
+        <br />
+        <br />
+
+        {text}
         <RenderingStrageties></RenderingStrageties>
       </Layout>
     );
@@ -62,13 +72,15 @@ export default function ClientSideRendering() {
   return (
     <Layout>
       <section>
-        {text}
         <h2>
           Hello {data.results[0].name.title} {data.results[0].name.first}{" "}
           {data.results[0].name.last}
         </h2>
       </section>
       <ProfilePic image={data.results[0].picture.large}></ProfilePic>
+      <br />
+      <br />
+      {text}
       <RenderingStrageties></RenderingStrageties>
     </Layout>
   );

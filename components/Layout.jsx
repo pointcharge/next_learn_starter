@@ -71,7 +71,7 @@ export default function Layout({ children, home }) {
       )}
 
 
-      <CloudflareAnalytics token="8c447bd674ef4bb18d4a2966442bc661"></CloudflareAnalytics>
+      {/* <CloudflareAnalytics token="8c447bd674ef4bb18d4a2966442bc661"></CloudflareAnalytics> */}
     </div>
   )
 }

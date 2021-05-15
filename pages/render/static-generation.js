@@ -1,30 +1,35 @@
 import React from "react";
-import Layout from "../../components/Layout";
-import ProfilePic from "../../components/ProfilePic";
 import RenderingStrageties from "../../components/RenderingStrageties";
+import RenderPage from "../../components/RenderPage";
+import { getRandomUser } from "../../lib/getRandomUser";
 
 export async function getStaticProps() {
-  const res = await fetch("https://randomuser.me/api");
-  const randomUser = await res.json();
+  const { name, profilePicture } = await getRandomUser();
 
   return {
     props: {
-      randomUser,
+      name,
+      profilePicture,
     },
   };
 }
 
-export default function StaticGeneration({ randomUser }) {
-  // console.log(randomUser.results[0].name);
-  // console.log(randomUser.results[0]);
-  // console.log(randomUser.results[0].picture.thumbnail);
-  return (
-    <Layout>
+export default function StaticGeneration({ name, profilePicture }) {
+  const pageText = (
+    <>
       <div>
         This page uses static generation with data fetching by using
         getStaticProps(). That means that during build time, it retireves the
-        data from the Random User API and generates the html with the text and
+        data from the Random User API and generates the HTML with the text and
         images.
+      </div>
+      <br />
+      <div>
+        Static generation should be used on pages where the information on it
+        doesn't change often, like an about page. It offers good SEO since
+        Google's regular crawlers can see whats on the website without having to
+        use the JS bots. Also, since the static site isn't changing, a CDN can
+        easily cache the website and quickly serve the website to the user.
       </div>
       <br />
       <div>
@@ -40,15 +45,15 @@ export default function StaticGeneration({ randomUser }) {
         fetched.
       </div>
 
-      <section>
-        <h2>
-          Hello {randomUser.results[0].name.title}{" "}
-          {randomUser.results[0].name.first} {randomUser.results[0].name.last}
-        </h2>
-      </section>
-      <ProfilePic image={randomUser.results[0].picture.large}></ProfilePic>
-
       <RenderingStrageties></RenderingStrageties>
-    </Layout>
+    </>
+  );
+
+  return (
+    <RenderPage
+      name={name}
+      profilePicture={profilePicture}
+      pageText={pageText}
+    ></RenderPage>
   );
 }

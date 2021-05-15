@@ -1,30 +1,28 @@
 import React from "react";
-import Layout from "../../components/Layout";
-import ProfilePic from "../../components/ProfilePic";
 import RenderingStrageties from "../../components/RenderingStrageties";
+import RenderPage from "../../components/RenderPage";
+import { getRandomUser } from "../../lib/getRandomUser";
 
 const regenTime = 10;
 
 export async function getStaticProps() {
-  const res = await fetch("https://randomuser.me/api");
-  const randomUser = await res.json();
+  const { name, profilePicture } = await getRandomUser();
 
   return {
     props: {
-      randomUser,
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every regenTime seconds
-      revalidate: regenTime,
+      name,
+      profilePicture,
     },
+    revalidate: regenTime,
   };
 }
 
-// NOTE: This is not working as intended. I'll have to read up more on
-// how icr works
-export default function IncrementalStaticRegeneration({ randomUser }) {
-  return (
-    <Layout>
+export default function IncrementalStaticRegeneration({
+  name,
+  profilePicture,
+}) {
+  const pageText = (
+    <>
       <div>
         <a
           href="https://blog.logrocket.com/incremental-static-regeneration-with-next-js/"
@@ -39,7 +37,6 @@ export default function IncrementalStaticRegeneration({ randomUser }) {
         solution of SSG and SSR.
       </dir>
       <br />
-
       <div>
         This page uses incremental static regeneration. getStaticProps(). That
         means that during build time, it retireves the data from the Random User
@@ -50,16 +47,15 @@ export default function IncrementalStaticRegeneration({ randomUser }) {
         Everybody who visits this site within {regenTime} seconds will see the
         same name and image of the person when we fetched the data at build
         time. When a new request comes in after {regenTime} seconds, Next.js
-        will regenarate the HTML in the background.
+        will regenarate the HTML in the background and you will see a new user.
       </div>
-
-      <section>
-        <h2>
-          Hello {randomUser.results[0].name.title}{" "}
-          {randomUser.results[0].name.first} {randomUser.results[0].name.last}
-        </h2>
-      </section>
-      <ProfilePic image={randomUser.results[0].picture.large}></ProfilePic>
+      <br />
+      <div>
+        <strong>Note:</strong> This will not work in a dev enviornment. If you
+        run this in a dev enviornment, then getStaticProps() will get called on
+        every request and every time you navigate to this page, a new user is
+        fetched.
+      </div>
 
       <RenderingStrageties></RenderingStrageties>
 
@@ -71,6 +67,14 @@ export default function IncrementalStaticRegeneration({ randomUser }) {
           </a>
         </div>
       </section>
-    </Layout>
+    </>
+  );
+
+  return (
+    <RenderPage
+      name={name}
+      profilePicture={profilePicture}
+      pageText={pageText}
+    ></RenderPage>
   );
 }
