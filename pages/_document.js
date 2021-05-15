@@ -14,7 +14,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <CloudflareAnalytics token="8c447bd674ef4bb18d4a2966442bc661" />
         </body>
       </Html>
     );

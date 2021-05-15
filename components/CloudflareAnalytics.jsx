@@ -1,6 +1,5 @@
 import React from 'react'
 
-// TODO: make this render outside the __next component
 export default function CloudflareAnalytics({token}) {
   return(
     <>
