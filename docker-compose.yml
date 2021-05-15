@@ -1,10 +1,10 @@
 version: "3.8"
 
 volumes: 
-    # Need to run docker volume create node_dev_vscode_extensions first
-    node_dev_vscode_extensions:
+
+    # Pretty sure that vscode extensions are located in $CONTAINER_HOME/.vscode-server
+    node_vscode:
         external: true
-    vscode_server:
 
 services: 
     next_learn_starter:
@@ -12,98 +12,11 @@ services:
         volumes: 
             - .:/root/next_learn_starter
             - /home/user/.gitconfig:/root/.gitconfig
-            - node_dev_vscode_extensions:/root/.vscode/extensions
-            - vscode_server:/root/.vscode-server
+            - node_vscode:/root/.vscode-server
         container_name: next_learn_starter
         # Needed so container persists
         stdin_open: true
         tty: true
         ports:
             - 5000:3000
-
-    # kong:
-    #     container_name: supabase-kong
-    #     image: alexdaiii/supabase-kong
-    #     environment:
-    #         KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
-    #         KONG_PLUGINS: request-transformer,cors,key-auth,http-log
-
-    # auth:
-    #     container_name: supabase-auth
-    #     image: supabase/gotrue:latest
-    #     environment:
-    #         GOTRUE_JWT_SECRET: super-secret-jwt-token-with-at-least-32-characters-long
-    #         GOTRUE_JWT_EXP: 3600
-    #         GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
-    #         GOTRUE_DB_DRIVER: postgres
-    #         DB_NAMESPACE: auth
-    #         API_EXTERNAL_URL: localhost
-    #         GOTRUE_API_HOST: 0.0.0.0
-    #         PORT: 9999
-    #         GOTRUE_DISABLE_SIGNUP: "false"
-    #         GOTRUE_SITE_URL: localhost
-    #         GOTRUE_MAILER_AUTOCONFIRM: "true"
-    #         GOTRUE_LOG_LEVEL: DEBUG
-    #         GOTRUE_OPERATOR_TOKEN: super-secret-operator-token
-    #         DATABASE_URL: "postgres://postgres:postgres@db:5432/postgres?sslmode=disable"
-    #     depends_on:
-    #         - db
-
-    # rest:
-    #     container_name: supabase-rest
-    #     image: postgrest/postgrest:latest
-    #     depends_on:
-    #         - db
-    #     restart: always
-    #     environment:
-    #         PGRST_DB_URI: postgres://postgres:postgres@db:5432/postgres
-    #         PGRST_DB_SCHEMA: public
-    #         PGRST_DB_ANON_ROLE: postgres
-    #         PGRST_JWT_SECRET: super-secret-jwt-token-with-at-least-32-characters-long
-
-    # realtime:
-    #     container_name: supabase-realtime
-    #     image: supabase/realtime:latest
-    #     depends_on:
-    #     - db
-    #     restart: on-failure
-    #     environment:
-    #         DB_HOST: db
-    #         DB_NAME: postgres
-    #         DB_USER: postgres
-    #         DB_PASSWORD: postgres
-    #         DB_PORT: 5432
-    #         PORT: 4000
-    #         HOSTNAME: localhost
-    #         # Disable JWT Auth locally. The JWT_SECRET will be ignored.
-    #         SECURE_CHANNELS: 'false'
-    #         JWT_SECRET: super-secret-jwt-token-with-at-least-32-characters-long
-
-    # db:
-    #     container_name: supabase-db
-    #     image: alexdaiii/supabase-db
-    #     command:
-    #     - postgres
-    #     - -c
-    #     - wal_level=logical
-    #     environment:
-    #         POSTGRES_DB: postgres
-    #         POSTGRES_USER: postgres
-    #         POSTGRES_PASSWORD: postgres
-    #         POSTGRES_PORT: 5432
-    #     volumes: 
-    #         - postgres:/var/lib/postgresql/data
-
-    # pgadmin:
-        # container_name: pgadmin
-        # image: dpage/pgadmin4
-        # environment: 
-        #     PGADMIN_DEFAULT_EMAIL: user@domain.com
-        #     PGADMIN_DEFAULT_PASSWORD: SuperSecret
-        # ports:
-        #     - 5001:80
-        # volumes: 
-        #     - pgadmin:/var/lib/pgadmin
-
-
 
