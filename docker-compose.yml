@@ -5,6 +5,8 @@ volumes:
     # Pretty sure that vscode extensions are located in $CONTAINER_HOME/.vscode-server
     node_vscode:
         external: true
+    vscode:
+        external: true
 
 services: 
     next_learn_starter:
@@ -13,6 +15,7 @@ services:
             - .:/root/next_learn_starter
             - /home/user/.gitconfig:/root/.gitconfig
             - node_vscode:/root/.vscode-server
+            - vscode:/root/.vscode
         container_name: next_learn_starter
         # Needed so container persists
         stdin_open: true
