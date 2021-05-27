@@ -70,6 +70,32 @@ export default function Home({ allPostsData }) {
           <Link href="/posts/first-post">First Post</Link>
         </div>
       </section>
+
+      <section>
+        <h2>API Routes</h2>
+        <div>
+          <Link href="/api/hello">/api/hello</Link>
+          <div>
+            <strong>Description: </strong>Will always return json with the text
+            hello.
+          </div>
+        </div>
+        <div>
+          <Link href="/api/time/*">/api/time/*</Link>
+          <div>
+            <strong>Description: </strong>Will current time. Meant to test if
+            Cloudflare or Vercel is caching the API routes.
+          </div>
+        </div>
+        <div>
+          <Link href="/api/headers">/api/headers</Link>
+          <div>
+            <strong>Description: </strong>Will all headers that were recieved
+            fromt the server. Meant to see what headers Cloudflare and Vercel
+            append.
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 }
