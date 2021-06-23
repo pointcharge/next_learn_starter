@@ -9,17 +9,29 @@ volumes:
         external: true
 
 services: 
-    next_learn_starter:
+    server:
         image: alexdaiii/node-dev
-        volumes: 
-            - .:/root/next_learn_starter
-            - /home/user/.gitconfig:/root/.gitconfig
-            - node_vscode:/root/.vscode-server
-            - vscode:/root/.vscode
-        container_name: next_learn_starter
+        volumes:
+          - .:/root/next_learn_starter
+          - /home/user/.gitconfig:/root/.gitconfig
+          - vscode:/root/.vscode
+          - node_vscode:/root/.vscode-server
+        container_name: next-learn-starter
         # Needed so container persists
         stdin_open: true
         tty: true
+        cpus: 0.75
+        mem_limit: 2048m
+        expose:
+          - 3000
+
+    nginx:
+        restart: always
+        image: alexdaiii/nginx-node-dev
+        volumes: 
+            - $HOME/ssl/__NO_TRUST.crt:/etc/nginx/nginx-selfsigned.crt
+            - $HOME/ssl/__NO_TRUST.key:/etc/nginx/nginx-selfsigned.key
         ports:
-            - 5000:3000
+            - "80:80"
+            - "443:443"
 
