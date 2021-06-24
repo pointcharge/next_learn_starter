@@ -11,6 +11,14 @@
     {
       "route": "api/headers",
       "description": "Will output headers that were recieved from the server. Meant to see what headers Cloudflare and Vercel append."
+    },
+    {
+      "route": "api/cache/johndoe",
+      "description": "The example on the vercel website for caching serverless functions. Caches the response and serves it fresh every 50 seconds."
+    },
+    {
+      "route": "api/cache/v-stale",
+      "description": "A simple example returning the number of minutes past the hour and the number of seconds past the minute. The cache is fresh for 0-10 seconds; stale for 10-59 seconds, but served from the cache, and in the background is revalidated; completely stale after 60 seconds and must be fetched from the server."
     }
   ]
 }
