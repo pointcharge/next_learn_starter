@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "route": "api/hello",
+      "description": "Will always return json with the text hello."
+    },
+    {
+      "route": "api/time/*",
+      "description": "Will current time. Meant to test if Cloudflare or Vercel is caching the API routes."
+    },
+    {
+      "route": "api/headers",
+      "description": "Will output headers that were recieved from the server. Meant to see what headers Cloudflare and Vercel append."
+    }
+  ]
+}

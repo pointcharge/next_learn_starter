@@ -4,6 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import RenderingStragetiesList from "../components/RenderingStragetiesList";
 import Date from "../components/Date";
+import APIroutes from "../route-desctiption/routes.json";
 
 // Only during compilation on Node
 import { getSortedPostsData } from "../lib/posts";
@@ -16,16 +17,20 @@ export async function getStaticProps() {
   // In prod, this only runs during compilation
   // Also, this func only runs in pages, not in components
   const allPostsData = getSortedPostsData();
+  const apiRoutes = APIroutes.routes;
 
   return {
     // This component will have access to this data in props.allPostsData
     props: {
       allPostsData,
+      apiRoutes,
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, apiRoutes }) {
+  console.log(apiRoutes);
+
   return (
     <Layout home>
       <Head>
@@ -73,28 +78,16 @@ export default function Home({ allPostsData }) {
 
       <section>
         <h2>API Routes</h2>
-        <div>
-          <Link href="/api/hello">/api/hello</Link>
-          <div>
-            <strong>Description: </strong>Will always return json with the text
-            hello.
-          </div>
-        </div>
-        <div>
-          <Link href="/api/time/*">/api/time/*</Link>
-          <div>
-            <strong>Description: </strong>Will current time. Meant to test if
-            Cloudflare or Vercel is caching the API routes.
-          </div>
-        </div>
-        <div>
-          <Link href="/api/headers">/api/headers</Link>
-          <div>
-            <strong>Description: </strong>Will all headers that were recieved
-            fromt the server. Meant to see what headers Cloudflare and Vercel
-            append.
-          </div>
-        </div>
+        {apiRoutes.map(({ route, description }) => {
+          return (
+            <div>
+              <Link href={route}>{route}</Link>
+              <div>
+                <strong>Description: </strong> {description}
+              </div>
+            </div>
+          );
+        })}
       </section>
     </Layout>
   );
