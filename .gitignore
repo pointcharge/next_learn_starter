@@ -31,3 +31,5 @@ yarn-error.log*
 
 # serlf signed certs for dev
 nginx
+
+.env
