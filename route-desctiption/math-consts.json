@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "route": "/api/math/e",
+      "description": "Returns Euler's constant"
+    },
+    {
+      "route": "/api/math/ln2",
+      "description": "Returns the natural logarithm of 2"
+    },
+    {
+      "route": "/api/math/ln10",
+      "description": "Returns the natural logarithm of 10"
+    },
+    {
+      "route": "/api/math/log2e",
+      "description": "Returns the base-2 logarithm of E"
+    },
+    {
+      "route": "/api/math/log10e",
+      "description": "Returns the base-10 logarithm of E"
+    },
+    {
+      "route": "/api/math/pi",
+      "description": "Returns the ratio of the a circle's circumference to its diameter;"
+    },
+    {
+      "route": "/api/math/sqrt1_2",
+      "description": "Returns the square root of ½"
+    },
+    {
+      "route": "/api/math/sqrt2",
+      "description": "Returns the square root of 2"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import Date from "../components/Date";
 
 // Only during compilation on Node
 import { getSortedPostsData } from "../lib/posts";
-import { getAPIRoutes, getMathRoutes } from "../lib/apiRoutes";
+import { getAPIRoutes, getMathConst, getMathRoutes } from "../lib/apiRoutes";
 
 export async function getStaticProps() {
   // NOTE: This is running in NODE not on the client
@@ -19,6 +19,7 @@ export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   const apiRoutes = getAPIRoutes();
   const mathRoutes = getMathRoutes();
+  const mathConsts = getMathConst();
 
   return {
     // This component will have access to this data in props.allPostsData
@@ -26,11 +27,17 @@ export async function getStaticProps() {
       allPostsData,
       apiRoutes,
       mathRoutes,
+      mathConsts,
     },
   };
 }
 
-export default function Home({ allPostsData, apiRoutes, mathRoutes }) {
+export default function Home({
+  allPostsData,
+  apiRoutes,
+  mathRoutes,
+  mathConsts,
+}) {
   return (
     <Layout home>
       <Head>
@@ -100,6 +107,21 @@ export default function Home({ allPostsData, apiRoutes, mathRoutes }) {
         <br />
         <div>
           {mathRoutes.map(({ route, description }) => {
+            return (
+              <div>
+                <Link href={route}>{route}</Link>
+                <div>
+                  <strong>Description: </strong> {description}
+                </div>
+                <br></br>
+              </div>
+            );
+          })}
+        </div>
+        <h3>Math Constants</h3>
+        <div>These always return a constant</div> <br />
+        <div>
+          {mathConsts.map(({ route, description }) => {
             return (
               <div>
                 <Link href={route}>{route}</Link>
