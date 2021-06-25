@@ -4,10 +4,10 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import RenderingStragetiesList from "../components/RenderingStragetiesList";
 import Date from "../components/Date";
-import APIroutes from "../route-desctiption/routes.json";
 
 // Only during compilation on Node
 import { getSortedPostsData } from "../lib/posts";
+import { getAPIRoutes, getMathRoutes } from "../lib/apiRoutes";
 
 export async function getStaticProps() {
   // NOTE: This is running in NODE not on the client
@@ -17,20 +17,20 @@ export async function getStaticProps() {
   // In prod, this only runs during compilation
   // Also, this func only runs in pages, not in components
   const allPostsData = getSortedPostsData();
-  const apiRoutes = APIroutes.routes;
+  const apiRoutes = getAPIRoutes();
+  const mathRoutes = getMathRoutes();
 
   return {
     // This component will have access to this data in props.allPostsData
     props: {
       allPostsData,
       apiRoutes,
+      mathRoutes,
     },
   };
 }
 
-export default function Home({ allPostsData, apiRoutes }) {
-  console.log(apiRoutes);
-
+export default function Home({ allPostsData, apiRoutes, mathRoutes }) {
   return (
     <Layout home>
       <Head>
@@ -85,9 +85,32 @@ export default function Home({ allPostsData, apiRoutes }) {
               <div>
                 <strong>Description: </strong> {description}
               </div>
+              <br></br>
             </div>
           );
         })}
+      </section>
+
+      <section>
+        <h2>Math Routes</h2>
+        <div>
+          These are just joke routes meant to test how vercel handles more than
+          12 API functions
+        </div>
+        <br />
+        <div>
+          {mathRoutes.map(({ route, description }) => {
+            return (
+              <div>
+                <Link href={route}>{route}</Link>
+                <div>
+                  <strong>Description: </strong> {description}
+                </div>
+                <br></br>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </Layout>
   );

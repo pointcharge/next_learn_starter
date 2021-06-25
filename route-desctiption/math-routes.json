@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "route": "api/math/isEven/:number",
+      "description": "Returns if an integer is Even."
+    },
+    {
+      "route": "api/math/isOdd/:number",
+      "description": "Returns if an integer is Odd."
+    },
+    {
+      "route": "api/math/randyRandom",
+      "description": "Returns a random number. The number is cached in the Vercel CDN for 10 minutes."
+    },
+    {
+      "route": "api/math/isPow2/:number",
+      "description": "Returns if an integer is a power of 2 (most of the time)"
+    },
+    {
+      "route": "api/math/pow3/:number",
+      "description": "Returns if an integer raised to the power of 3"
+    },
+    {
+      "route": "api/math/add9000/:number",
+      "description": "Returns an integer plus 9000"
+    },
+    {
+      "route": "api/math/sub1/:number",
+      "description": "Returns an integer minus 1"
+    },
+    {
+      "route": "api/math/mult10/:number",
+      "description": "Returns an integer multiplied by 10"
+    },
+    {
+      "route": "api/math/divBy5/:number",
+      "description": "Returns an integer integer divided by 5"
+    },
+    {
+      "route": "api/math/plusUltra/:word",
+      "description": "Returns an string concatenated with \"-Ultra!\""
+    },
+    {
+      "route": "api/math/e",
+      "description": "Returns Euler's constant"
+    },
+    {
+      "route": "api/math/ln2",
+      "description": "Returns the natural logarithm of 2"
+    },
+    {
+      "route": "api/math/ln10",
+      "description": "Returns the natural logarithm of 10"
+    },
+    {
+      "route": "api/math/log2e",
+      "description": "Returns the base-2 logarithm of E"
+    },
+    {
+      "route": "api/math/log10e",
+      "description": "Returns the base-10 logarithm of E"
+    },
+    {
+      "route": "api/math/pi",
+      "description": "Returns the ratio of the a circle's circumference to its diameter;"
+    },
+    {
+      "route": "api/math/sqrt1_2",
+      "description": "Returns the square root of ½"
+    },
+    {
+      "route": "api/math/sqrt2",
+      "description": "Returns the square root of 2"
+    }
+  ]
+}
